@@ -1,0 +1,161 @@
+@keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
+.appear {
+  animation: 0.5s 1 forwards appear;
+  animation-fill-mode: backwards;
+  animation-delay: 0.2s;
+}
+
+.icon-text span{
+  vertical-align: super;
+}
+
+body {
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+
+.app {
+  --horizontal-margin: 10%;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+
+.header {
+  --title-width: 400px;
+  z-index: 100;
+  flex: 0 1 auto;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 75px;
+  box-shadow: 0px 0px 4px 2px #0000001b;
+}
+
+.header-title {
+  position: absolute;
+  width: var(--title-width);
+  top: 50%;
+  left: var(--horizontal-margin);
+  transform: translateY(-50%);
+  margin: 0px;
+}
+
+@media (max-width: 999px) {
+  
+  .app {
+    --horizontal-margin: 50px;
+  }
+
+  .header {
+    --title-width: 150px;
+  }
+
+  .header-title {
+    font-size: 14px;
+  }
+
+  .open-sections-button {
+    position: absolute;
+    right: var(--horizontal-margin);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .close-sections-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .header-sections {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.2s;
+    padding-top: 75px;
+  }
+  .header-sections.closed {
+    right: -200px;
+  }
+  .header-sections.open {
+    right: 0px;
+  }
+
+  .section {
+    margin-bottom: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    cursor: pointer;
+  }
+  .section:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+}
+
+@media (min-width: 1000px) {
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .open-sections-button {
+    display: none;
+  }
+
+  .close-sections-button {
+    display: none;
+  }
+
+  .header-sections {
+    position: absolute;
+    left: calc(var(--horizontal-margin) + var(--title-width));
+    right: var(--horizontal-margin);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .header-sections .section {
+    float: right;
+    padding: 8px 10px;
+    margin-left: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: black;
+  }
+  .header-sections .section:hover {
+    background-color: #0000001b;
+  }
+  .header-sections .section.selected {
+    background-color: black;
+    color: white;
+  }
+
+}
+
+
+.view-container {
+  position: absolute;
+  top: 75px;
+  height: calc(100% - 75px);
+  width: 100%;
+  overflow: auto;
+}
+
+.view {
+  padding: 40px var(--horizontal-margin) 50px var(--horizontal-margin);
+}

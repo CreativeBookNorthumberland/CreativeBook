@@ -1,0 +1,15 @@
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.search-view h1 {
+    margin-bottom: 40px;
+}
+
+.search-view .filters {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}

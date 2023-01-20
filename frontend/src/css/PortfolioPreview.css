@@ -1,0 +1,52 @@
+.portfolio-preview {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.portfolio-preview:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
+
+.portfolio-preview .name {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+
+.portfolio-preview .primary-services {
+    margin-bottom: 10px;
+}
+
+.portfolio-preview .primary-services label {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.portfolio-preview .primary-services span {
+    background-color: rgba(136, 201, 44, 0.228);
+    padding: 2px 3px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.portfolio-preview .secondary-services label {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.portfolio-preview .secondary-services span {
+    background-color: rgba(44, 136, 201, 0.228);
+    padding: 2px 3px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
