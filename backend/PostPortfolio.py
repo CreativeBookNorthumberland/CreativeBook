@@ -30,7 +30,8 @@ def post_portfolio(request):
     portfolio_string = request_form['portfolio']
     portfolio = json.loads(portfolio_string)
     portfolio['Approved'] = False
-    portfolio['WorkSamples'] = []
+    portfolio['WorkSampleNames'] = []
+    portfolio['WorkSampleLinks'] = []
 
     # retrieve files from request
     request_files = request.files.to_dict()
@@ -71,7 +72,8 @@ def post_portfolio(request):
         if request_file_name == 'logo.png':
             portfolio['LogoUrl'] = 'https://storage.googleapis.com/creativebook-portfolio-files/' + file_name
         else:
-            portfolio['WorkSamples'].append('https://storage.googleapis.com/creativebook-portfolio-files/' + file_name)
+            portfolio['WorkSampleNames'].append(request_file_name)
+            portfolio['WorkSampleLinks'].append('https://storage.googleapis.com/creativebook-portfolio-files/' + file_name)
         
 
     # insert new Portfolio

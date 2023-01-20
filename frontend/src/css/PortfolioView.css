@@ -113,3 +113,33 @@
     margin-top: 40px;
     color: rgba(0, 0, 0, 0.8);
 }
+
+.portfolio .work-sample {
+    display: block;
+    position: relative;
+    height: 40px;
+    background-color: rgba(245, 245, 245);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+.portfolio .work-sample:hover .work-sample-icon {
+    background-color: rgba(220, 220, 220);
+}
+
+.portfolio .work-sample .work-sample-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(230, 230, 230);
+    padding: 10px 20px;
+}
+
+.portfolio .work-sample .work-sample-name {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    font-weight: 600;
+    transform: translateY(-50%);
+}

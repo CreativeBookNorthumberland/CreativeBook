@@ -15,6 +15,7 @@ import Instagram from '@mui/icons-material/Instagram'
 import Twitter from '@mui/icons-material/Twitter'
 import Linkedin from '@mui/icons-material/LinkedIn'
 import Link from '@mui/icons-material/Link'
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
 
 import Loader from '../misc/Loader'
 
@@ -127,6 +128,15 @@ function PortfolioView(props) {
 
                 <h2>Previous work</h2>
                 <p>{portfolio.PreviousWorkQuestion}</p>
+
+                <h2>Work samples</h2>
+                { portfolio.WorkSampleNames.map((WorkSampleName, index) => (
+                    <a className='work-sample' href={portfolio.WorkSampleLinks[index]}>
+                        <div className='work-sample-icon'><InsertDriveFileIcon /></div>
+                        <div className='work-sample-name'>{WorkSampleName}</div>
+                    </a>
+                )) }
+
 
             </div> }
         </div>
