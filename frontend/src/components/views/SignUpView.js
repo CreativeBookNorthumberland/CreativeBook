@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import Radio from '@mui/material/Radio'
 import Button from '@mui/material/Button'
 import Upload from '@mui/icons-material/Upload'
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
 
 import Loader from '../misc/Loader'
 
@@ -13,7 +14,7 @@ import { useEffect, useState } from 'react'
 import formValidator from '../../services/formValidator'
 import api from '../../services/api'
 
-function PortfolioForm() {
+function PortfolioForm(props) {
 
   const ServiceLevels = {
     Primary: 'Primary',
@@ -86,13 +87,15 @@ function PortfolioForm() {
 
 
   const [portfolioForm, setPortfolioForm] = useState(formSchema.generateInitialForm())
-  const [logo, setLogo] = useState(null)
+  const [logoFile, setLogoFile] = useState(null)
   const [services, setServices] = useState([
     'Graphic Design', 'Photography', 'Illustration', 
     'Copywriting', 'Social media', 'Music', 'Website design', 
     'Website building', 'Legal advice', 'Financial advice'
   ])
   const [newService, setNewService] = useState('')
+  const [workSampleFiles, setWorkSampleFiles] = useState([])
+  const [dragActive, setDragActive] = useState(false)
   const [submitLoading, setSubmitLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
@@ -129,6 +132,40 @@ function PortfolioForm() {
               helperText={formElement.isValid==false ? formElement.errorMessage : ''} />
   }
 
+  function isValidFileSize(file) {
+    const fileSize = file.size / 1024 / 1024
+    return fileSize <= 1
+  }
+
+  function updateLogo(e) {
+    var file = e.target.files[0]
+
+    if (!isValidFileSize(file)) {
+      props.showSnack('File cannot be more that 1Mb')
+      return
+    }
+
+    setLogoFile(e.target.files[0])
+  }
+
+  function addWorkSample(e) {
+    var file = e.target.files[0]
+
+    if (workSampleFiles.length >= 4) {
+      props.showSnack('Cannot upload more than 4 work samples')
+      return
+    }
+
+    if (!isValidFileSize(file)) {
+      props.showSnack('File cannot be more that 1Mb')
+      return
+    }
+
+    setDragActive(false)
+    console.log(workSampleFiles)
+    setWorkSampleFiles([...workSampleFiles, e.target.files[0]])
+  }
+
   function updateService(service, level) {
     var portfolioFormCopy = {...portfolioForm}
     portfolioFormCopy.Services.value[service] = level
@@ -155,7 +192,10 @@ function PortfolioForm() {
     }
 
     const portfolioFormData = new FormData()
-    portfolioFormData.append('logo.png', logo)
+    portfolioFormData.append('logo.png', logoFile)
+    for (var file_index in workSampleFiles) {
+      portfolioFormData.append(workSampleFiles[file_index].name, workSampleFiles[file_index])
+    }
     var portfolioString = JSON.stringify(formSchema.generateValuesDict(portfolioFormCopy))
     portfolioFormData.append('portfolio', portfolioString)
     
@@ -185,10 +225,10 @@ function PortfolioForm() {
           <Grid item xs={12}>
             <div className='logo-upload'>
               <div className='logo-preview-container'>
-                <img className='logo-preview' src={logo==null ? '' : URL.createObjectURL(logo)} />
+                <img className='logo-preview' src={logoFile==null ? '' : URL.createObjectURL(logoFile)} />
               </div>
               <Button className='upload-button' variant='contained'>
-                <input type="file" accept='.png' onChange={(e) => {setLogo(e.target.files[0])}}/>
+                <input type="file" accept='.png' onChange={(e) => {updateLogo(e)}}/>
                 <Upload /> <span>Upload logo</span>
               </Button>
             </div>
@@ -263,9 +303,23 @@ function PortfolioForm() {
         <h2>Work samples</h2>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <div className='document-upload'>
+            <div className={'document-upload' + (dragActive ? ' drag-active' : '') }
+              onDragEnter={() => {setDragActive(true)}} 
+              onDragExit={() => {setDragActive(false)}}
+              onDragEnd={() => {setDragActive(false)}}>
+              <input type="file" onChange={(e) => {addWorkSample(e)}}/>
               <div className='form-upload icon-text'><Upload /> <span>Upload any work samples</span></div>
             </div>
+            { workSampleFiles.length > 0 && <div className='files-preview'>
+              {workSampleFiles.map((file) => (
+                <div key={file.name} className='file-container'>
+                  <div className='file'>
+                    <div className='file-icon'><InsertDriveFileIcon fontSize='large' /></div>
+                    <div className='file-name'>{file.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div> }
           </Grid>
         </Grid>
 

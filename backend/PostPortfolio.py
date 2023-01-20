@@ -29,43 +29,56 @@ def post_portfolio(request):
     request_form = request.form.to_dict()
     portfolio_string = request_form['portfolio']
     portfolio = json.loads(portfolio_string)
-    print(portfolio)
+    portfolio['Approved'] = False
+    portfolio['WorkSamples'] = []
 
-    # retrieve logo from request and generate file name
+    # retrieve files from request
     request_files = request.files.to_dict()
-    logo_file = request_files['logo.png']
-    logo_file_extension = logo_file.name.split('.')[1]
-    logo_file_prefix = 'logo' + portfolio['CompanyName']
-    logo_file_name = logo_file_prefix + '.' + logo_file_extension
+
 
     # retrieve storage bucket
     storage_client = storage.Client()
-    bucket = storage_client.get_bucket('creative-portfolio-files')
+    bucket = storage_client.get_bucket('creativebook-portfolio-files')
 
-    # check if file name is taken and rename if it is
-    taken = True
-    blobs = storage_client.list_blobs('creative-portfolio-files')
+    # retrieve name of existing files
+    blobs = storage_client.list_blobs('creativebook-portfolio-files')
     blob_names = [blob.name for blob in blobs]
-    while taken:
-        if logo_file_name in blob_names:
-            logo_file_prefix += '1'
-            logo_file_name = logo_file_prefix + '.' + logo_file_extension
+
+
+    # process each file
+    for request_file_name in request_files:
+
+        # construct name of file to insert
+        file = request_files[request_file_name]
+        file_prefix = file.name.split('.')[0] + '_' + portfolio['CompanyName']
+        file_extension = file.name.split('.')[1]
+        file_name = file_prefix + '.' + file_extension
+
+        # check if file name is taken and rename if it is
+        taken = True
+        while taken:
+            if file_name in blob_names:
+                file_prefix += '1'
+                file_name = file_prefix + '.' + file_extension
+            else:
+                taken = False
+
+        # upload file to file storage
+        blob = bucket.blob(file_name)
+        blob.upload_from_file(file)
+
+        # add reference to files in portfolio
+        if request_file_name == 'logo.png':
+            portfolio['LogoUrl'] = 'https://storage.googleapis.com/creativebook-portfolio-files/' + file_name
         else:
-            taken = False
-
-    # upload file to storage
-    blob = bucket.blob(logo_file_name)
-    blob.upload_from_file(logo_file)
-
-
-    # update portfolio data
-    portfolio['Approved'] = False
-    portfolio['LogoUrl'] = 'https://storage.googleapis.com/creative-portfolio-files/' + logo_file_name
+            portfolio['WorkSamples'].append('https://storage.googleapis.com/creativebook-portfolio-files/' + file_name)
+        
 
     # insert new Portfolio
     datastore_portfolio = datastore.Entity(key=client.key("Portfolio", portfolio['CompanyName']))
     datastore_portfolio.update(portfolio)
     client.put(datastore_portfolio)
+    
     
     # return 200 code
     return ({'res': True}, 200, headers)

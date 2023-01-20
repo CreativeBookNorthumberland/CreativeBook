@@ -4,7 +4,7 @@ import { useLocation, useNavigate, NavLink, Routes, Route, Navigate } from "reac
 
 import Menu from '@mui/icons-material/Menu'
 import Close from '@mui/icons-material/Close'
-import Modal from '@mui/material/Modal'
+import Snackbar from '@mui/material/Snackbar'
 import IconButton from '@mui/material/IconButton'
 
 import HomeView from './components/views/HomeView'
@@ -24,29 +24,30 @@ function App() {
       id: 1,
       name: 'About',
       path: '/about',
-      viewComponent: <AboutView />
+      viewComponent: <AboutView showSnack={showSnack} />
     },
     ForCreatives: {
       id: 2,
       name: 'Sign up',
       path: '/signup',
-      viewComponent: <PortfolioForm />
+      viewComponent: <PortfolioForm showSnack={showSnack} />
     },
     ForBusinesses: {
       id: 3,
       name: 'Find creative',
       path: '/search',
-      viewComponent: <SearchView />
+      viewComponent: <SearchView showSnack={showSnack} />
     },
     Home: {
       id: 4,
       name: 'Home',
       path: '/home',
-      viewComponent: <HomeView />
+      viewComponent: <HomeView showSnack={showSnack} />
     }
   }
 
 
+  const [snackData, setSnackData] = useState({show: false, text: ''})
   const [section, setSection] = useState('')
   const [showSections, setShowSections] = useState(false)
   const [showPasswordModal, setShowPasswordModal] = useState(false)
@@ -64,6 +65,10 @@ function App() {
   }, [location])
 
 
+  function showSnack(message) {
+    setSnackData({show: true, text: message})
+  }
+
   function passwordProtect(callback) {
     setShowPasswordModal(true)
     setPasswordModalCallback({'callback': callback})
@@ -72,6 +77,13 @@ function App() {
 
   return (
     <div className='app'>
+
+      <Snackbar
+        open={snackData.show}
+        autoHideDuration={6000}
+        onClose={() => {setSnackData({...snackData, show: false})}}
+        message={snackData.text}
+      />
 
       {/* modals */}
       <PasswordModal show={showPasswordModal} successCallback={passwordModalCallback['callback']} closeModal={() => {setShowPasswordModal(false)}} />
@@ -98,11 +110,11 @@ function App() {
           </div>
 
           {Object.keys(Sections).map((key) => (
-            <div key={key} className={'section' + (section==key ? ' selected' : '')}>
               <NavLink key={Sections[key].id} to={Sections[key].path}>
-                <div onClick={() => {setShowSections(false); setSection(key)}}>{Sections[key].name}</div>
+                <div key={key} className={'section' + (section==key ? ' selected' : '')}>
+                  <div onClick={() => {setShowSections(false); setSection(key)}}>{Sections[key].name}</div>
+                </div>
               </NavLink>
-            </div>
           ))}
 
         </div>
@@ -119,13 +131,13 @@ function App() {
           ))}
 
           {/* Route for specific portfolio */}
-          <Route path='/search/:CompanyName' element={<div className='view'><PortfolioView isAdmin={false} passwordProtect={passwordProtect} /></div>} />
+          <Route path='/search/:CompanyName' element={<div className='view'><PortfolioView isAdmin={false} showSnack={showSnack} passwordProtect={passwordProtect} /></div>} />
 
           {/* Route for admin view */}
-          <Route path='/admin' element={<div className='view'><AdminView passwordProtect={passwordProtect} /></div>} />
+          <Route path='/admin' element={<div className='view'><AdminView showSnack={showSnack} passwordProtect={passwordProtect} /></div>} />
 
           {/* Route for admin review of portfolio */}
-          <Route path='/admin/:CompanyName' element={<div className='view'><PortfolioView isAdmin={true} passwordProtect={passwordProtect} /></div>} />
+          <Route path='/admin/:CompanyName' element={<div className='view'><PortfolioView isAdmin={true} showSnack={showSnack} passwordProtect={passwordProtect} /></div>} />
 
           {/* Add catch all route */}
           <Route path='*' element={<Navigate to="/home" />} />
