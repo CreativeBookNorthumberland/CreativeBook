@@ -3,6 +3,7 @@ import '../../css/PortfolioView.css'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 
+import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
@@ -18,8 +19,7 @@ import Link from '@mui/icons-material/Link'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
 
 import Loader from '../misc/Loader'
-
-import { Button } from '@mui/material'
+import EditPortfolioValueModal from '../misc/EditPortfolioValueModal'
 
 import api from '../../services/api'
 
@@ -28,6 +28,8 @@ function PortfolioView(props) {
     var params = useParams()
     const [loading, setLoading] = useState(true)
     const [portfolio, setPortfolio] = useState(null)
+    const [showEditPortfolioValueModal, setShowEditPortfolioValueModal] = useState(false)
+    const [editPortfolioAttribute, setEditPortfolioAttribute] = useState('')
     let navigate = useNavigate()
 
 
@@ -64,6 +66,16 @@ function PortfolioView(props) {
         })
     }
 
+    function showEditModal(key) {
+        setEditPortfolioAttribute(key)
+        setShowEditPortfolioValueModal(true)
+    }
+
+    function updatePortfolioValue(newValue) {
+        var newPortfolio = {...portfolio}
+        newPortfolio[editPortfolioAttribute] = newValue
+        setPortfolio(newPortfolio)
+    }
 
     function adminApprovePortfolio() {
         props.passwordProtect((password) => {
@@ -77,6 +89,10 @@ function PortfolioView(props) {
 
     return (
         <div className='portfolio appear'>
+
+            <EditPortfolioValueModal show={showEditPortfolioValueModal} closeModal={() => {setShowEditPortfolioValueModal(false)}} 
+                updateCallback={updatePortfolioValue} initialValue={portfolio ? portfolio[editPortfolioAttribute] : ''} />
+
 
             { props.isAdmin && <div className='admin-bar'>
                 <div className='label'>Admin options</div>
@@ -96,16 +112,46 @@ function PortfolioView(props) {
 
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
-                        {portfolio.PhoneNumber!='' && <div className='icon-info icon-text'><PhoneIcon /> <span>{portfolio.PhoneNumber}</span></div>}
-                        {portfolio.Email!='' && <div className='icon-info icon-text'><AlternateEmail /> <span>{portfolio.Email}</span></div>}
-                        {portfolio.Town!='' && <div className='icon-info icon-text'><LocationOnIcon /> <span>{portfolio.Town}</span></div>}
-                        {portfolio.Website!='' && <div className='icon-info icon-text'><Link /> <span>{portfolio.Website}</span></div>}
+                        {(props.isAdmin || portfolio.PhoneNumber!='') && <div className='icon-info icon-text'>
+                            <PhoneIcon /> <span>{portfolio.PhoneNumber}</span> 
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('PhoneNumber')}}>Edit</Button>}
+                        </div>}
+
+                        {(props.isAdmin || portfolio.Email!='') && <div className='icon-info icon-text'>
+                            <AlternateEmail /> <span>{portfolio.Email}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Email')}}>Edit</Button>}
+                        </div>}
+
+                        {(props.isAdmin || portfolio.Town!='') && <div className='icon-info icon-text'>
+                            <LocationOnIcon /> <span>{portfolio.Town}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Town')}}>Edit</Button>}
+                        </div>}
+
+                        {(props.isAdmin || portfolio.Website!='') && <div className='icon-info icon-text'>
+                            <Link /> <span>{portfolio.Website}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Website')}}>Edit</Button>}
+                        </div>}
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        {portfolio.Facebook!='' && <div className='icon-info icon-text'><Facebook /> <span>{portfolio.Facebook}</span></div>}
-                        {portfolio.Instagram!='' && <div className='icon-info icon-text'><Instagram /> <span>{portfolio.Instagram}</span></div>}
-                        {portfolio.Twitter!='' && <div className='icon-info icon-text'><Twitter /> <span>{portfolio.Twitter}</span></div>}
-                        {portfolio.Linkedin!='' && <div className='icon-info icon-text'><Linkedin /> <span>{portfolio.Linkedin}</span></div>}
+                        {(props.isAdmin || portfolio.Facebook!='') && <div className='icon-info icon-text'>
+                            <Facebook /> <span>{portfolio.Facebook}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Facebook')}}>Edit</Button>}
+                        </div>}
+                        
+                        {(props.isAdmin || portfolio.Instagram!='') && <div className='icon-info icon-text'>
+                            <Instagram /> <span>{portfolio.Instagram}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Instagram')}}>Edit</Button>}
+                        </div>}
+                        
+                        {(props.isAdmin || portfolio.Twitter!='') && <div className='icon-info icon-text'>
+                            <Twitter /> <span>{portfolio.Twitter}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Twitter')}}>Edit</Button>}
+                        </div>}
+                        
+                        {(props.isAdmin || portfolio.Linkedin!='') && <div className='icon-info icon-text'>
+                            <Linkedin /> <span>{portfolio.Linkedin}</span>
+                            {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Linkedin')}}>Edit</Button>}
+                        </div>}
                     </Grid>
                 </Grid>
 
@@ -123,19 +169,27 @@ function PortfolioView(props) {
                     </Stack>
                 </Box>
 
-                <h2>Company description</h2>
-                <p>{portfolio.BusinessDescriptionQuestion}</p>
+                {(props.isAdmin || portfolio.BusinessDescriptionQuestion != '') && <>
+                    <h2>Company description</h2>
+                    <p>{portfolio.BusinessDescriptionQuestion}</p>
+                    {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('BusinessDescriptionQuestion')}}>Edit</Button>}
+                </>}
 
-                <h2>Previous work</h2>
-                <p>{portfolio.PreviousWorkQuestion}</p>
+                {(props.isAdmin || portfolio.PreviousWorkQuestion != '') && <>
+                    <h2>Previous work</h2>
+                    <p>{portfolio.PreviousWorkQuestion}</p>
+                    {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('PreviousWorkQuestion')}}>Edit</Button>}
+                </>}
 
-                <h2>Work samples</h2>
-                { portfolio.WorkSampleNames.map((WorkSampleName, index) => (
-                    <a className='work-sample' href={portfolio.WorkSampleLinks[index]}>
-                        <div className='work-sample-icon'><InsertDriveFileIcon /></div>
-                        <div className='work-sample-name'>{WorkSampleName}</div>
-                    </a>
-                )) }
+                {portfolio.WorkSampleNames.length > 0 && <>
+                    <h2>Work samples</h2>
+                    { portfolio.WorkSampleNames.map((WorkSampleName, index) => (
+                        <a className='work-sample' href={portfolio.WorkSampleLinks[index]}>
+                            <div className='work-sample-icon'><InsertDriveFileIcon /></div>
+                            <div className='work-sample-name'>{WorkSampleName}</div>
+                        </a>
+                    )) }
+                </>}
 
 
             </div> }
