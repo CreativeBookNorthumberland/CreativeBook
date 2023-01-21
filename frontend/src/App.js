@@ -1,7 +1,6 @@
 import './App.css'
 
 import { useLocation, useNavigate, NavLink, Routes, Route, Navigate } from "react-router-dom"
-
 import Menu from '@mui/icons-material/Menu'
 import Close from '@mui/icons-material/Close'
 import Snackbar from '@mui/material/Snackbar'

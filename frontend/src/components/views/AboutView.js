@@ -14,19 +14,21 @@ function AboutView() {
 
       <p>Creative Book Northumberland is for you if you are:</p>
 
+      <p>
       <ul>
         <li>A creative, living and working in Northumberland</li>
         <li>You need a space to advertise your services</li>
         <li>You are looking for a place to network and collaborate</li>
         <li>You are a business looking to work with a creative in Northumberland</li>
       </ul> 
+      </p>
 
 
       <p>Thanks to funding from North of Tyne Culture and Investment Programme: Creative UK, 
         Creative Book Northumberland is able to offer free listings to freelance creatives across 
         Northumberland as well as offering free access to businesses who are looking to collaborate.</p>
 
-      <h2>Meet the team.</h2>
+      <h2 style={{'marginTop': '40px'}}>Meet the team.</h2>
 
       <p>Creative Book Northumberland is run by Jess Thomas-Harrison and Bethanie Wardell.</p>
 
