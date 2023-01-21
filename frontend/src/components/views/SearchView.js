@@ -89,6 +89,7 @@ function SearchView() {
         <TextField
           label='Search by name'
           size='small'
+          fullWidth={window.innerWidth<700}
           InputProps={{
             startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
           }}
@@ -97,7 +98,11 @@ function SearchView() {
 
         <Autocomplete
           multiple
-          sx={{ display: 'inline-block', ml: 2, width: 300 }}
+          sx={{ 
+            display: 'inline-block', 
+            ml: (window.innerWidth<700 ? 0 : 2),
+            mt: (window.innerWidth<700 ? 2 : 0),
+            width: (window.innerWidth<700 ? '100%' : 300) }}
           size='small'
           options={services}
           getOptionLabel={option => option}
