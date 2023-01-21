@@ -135,6 +135,8 @@ function SearchView() {
 
       { loading==true && <div style={{'textAlign': 'center', 'marginTop': '10%'}}><Loader /></div> }
 
+      { loading==false && filteredPortfolios.length==0 && <div style={{'textAlign': 'center', 'marginTop': '10%'}}>No results</div> }
+
       {filteredPortfolios.map((portfolio, index) => (
         <NavLink key={portfolio.CompanyName} to={'/search/'+portfolio.CompanyName}>
           <div className='appear' style={{'animationDelay': 0.2 + index*0.03 + 's'}}>
