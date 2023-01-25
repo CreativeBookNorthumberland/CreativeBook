@@ -134,14 +134,14 @@ function PortfolioForm(props) {
 
   function isValidFileSize(file) {
     const fileSize = file.size / 1024 / 1024
-    return fileSize <= 1
+    return fileSize <= 3
   }
 
   function updateLogo(e) {
     var file = e.target.files[0]
 
     if (!isValidFileSize(file)) {
-      props.showSnack('File cannot be more that 1Mb')
+      props.showSnack('File cannot be more than 3Mb')
       return
     }
 
@@ -157,7 +157,7 @@ function PortfolioForm(props) {
     }
 
     if (!isValidFileSize(file)) {
-      props.showSnack('File cannot be more that 1Mb')
+      props.showSnack('File cannot be more than 3Mb')
       return
     }
 
@@ -184,26 +184,37 @@ function PortfolioForm(props) {
   function submit() {
     setSubmitLoading(true)
 
-    var [formValid, portfolioFormCopy] = formSchema.validate(portfolioForm)
-    setPortfolioForm(portfolioFormCopy)
-    
-    if (formValid == false) {
-      return
-    }
+    try {
+      var [formValid, portfolioFormCopy] = formSchema.validate(portfolioForm)
+      setPortfolioForm(portfolioFormCopy)
+      
+      if (formValid == false) {
+        return
+      }
 
-    const portfolioFormData = new FormData()
-    portfolioFormData.append('logo.png', logoFile)
-    for (var file_index in workSampleFiles) {
-      portfolioFormData.append(workSampleFiles[file_index].name, workSampleFiles[file_index])
+      const portfolioFormData = new FormData()
+      portfolioFormData.append('logo.png', logoFile)
+      for (var file_index in workSampleFiles) {
+        portfolioFormData.append(workSampleFiles[file_index].name, workSampleFiles[file_index])
+      }
+      var portfolioString = JSON.stringify(formSchema.generateValuesDict(portfolioFormCopy))
+      portfolioFormData.append('portfolio', portfolioString)
+      
+      api.postPortfolio(portfolioFormData)
+        .then(() => {
+          setSubmitted(true)
+        })
+        .catch(() => {
+          props.showSnack('There was an issue while uploading your portfolio')
+        })
+        .finally(() => {
+          setSubmitLoading(false)
+        })
     }
-    var portfolioString = JSON.stringify(formSchema.generateValuesDict(portfolioFormCopy))
-    portfolioFormData.append('portfolio', portfolioString)
-    
-    api.postPortfolio(portfolioFormData)
-      .finally(() => {
-        setSubmitLoading(false)
-        setSubmitted(true)
-      })
+    catch(e) {
+      props.showSnack('There was an issue while submitting')
+      setSubmitLoading(false)
+    }
   }
 
 

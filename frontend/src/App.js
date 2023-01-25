@@ -56,10 +56,17 @@ function App() {
 
 
   useEffect(() => {
+    var no_path_match = true
+
     for(var key of Object.keys(Sections)) {
       if (location.pathname == Sections[key].path) {
         setSection(key)
+        no_path_match = false
       }
+    }
+    
+    if (no_path_match) {
+      setSection('')
     }
   }, [location])
 
