@@ -15,6 +15,8 @@ import AdminView from './components/views/AdminView'
 import PasswordModal from './components/misc/PasswordModal'
 
 import { useEffect, useState } from 'react'
+import CBN_logo from './assets/CBN_logo.jpg'
+import CBN_text from './assets/CBN_text.jpg'
 
 function App() {
 
@@ -97,7 +99,10 @@ function App() {
       {/* header */}
       <div className='header'>
 
-        <h1 className='header-title'>Creative Book Northumberland</h1>
+        <div className='header-title'>
+          <img className='logo-img' src={CBN_logo} />
+          <img className='text-img' src={CBN_text} />
+        </div>
         
         {/* Button to open the sections overlay */}
         <div className='open-sections-button'>
@@ -151,6 +156,10 @@ function App() {
         </Routes>
       </div>
       
+      <div className='footer'>
+        Creative UK ©
+      </div>
+
     </div>
   )
 

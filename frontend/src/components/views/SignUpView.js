@@ -278,23 +278,29 @@ function PortfolioForm(props) {
         </Grid>
 
         <h2>Services</h2>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{marginLeft: '0px'}}>
 
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}>Primary</Grid>
-          <Grid item xs={4}>Secondary</Grid>
+          <Grid container>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={4}>Primary</Grid>
+            <Grid item xs={4}>Secondary</Grid>
+          </Grid>
 
-          {services.map((service) => (<Grid key={service} container>
-            <Grid item xs={4}>{service}</Grid>
-            <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Primary} onClick={() => {updateService(service, ServiceLevels.Primary)}} /></Grid>
-            <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Secondary} onClick={() => {updateService(service, ServiceLevels.Secondary)}}/></Grid>
-          </Grid>))}
+          {services.map((service, index) => (
+            <Grid key={service} container sx={{backgroundColor: index%2==0 ? 'rgb(240, 240, 240)' : 'transparent'}}>
+              <Grid item xs={4} sx={{paddingTop: '10px', paddingLeft: '10px'}}>{service}</Grid>
+              <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Primary} onClick={() => {updateService(service, ServiceLevels.Primary)}} /></Grid>
+              <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Secondary} onClick={() => {updateService(service, ServiceLevels.Secondary)}}/></Grid>
+            </Grid>
+          ))}
           
           <Grid item xs={12}></Grid>
-          <Grid item xs={12}>
-            <span><b>Add a service:</b></span>
-            <TextField value={newService} id="outlined-basic" style={{'margin': '0px 20px 0px 20px'}} size='small' onChange={(e) => {setNewService(e.target.value)}} />
-            <Button variant='contained' onClick={addNewService}>Add</Button>
+          <Grid container>
+            <Grid item xs={12}>
+              <span><b>Add a service:</b></span>
+              <TextField value={newService} id="outlined-basic" style={{'margin': '0px 20px 0px 20px'}} size='small' onChange={(e) => {setNewService(e.target.value)}} />
+              <Button variant='contained' onClick={addNewService}>Add</Button>
+            </Grid>
           </Grid>
 
         </Grid>

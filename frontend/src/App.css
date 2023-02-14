@@ -14,10 +14,6 @@
   vertical-align: super;
 }
 
-body {
-  overflow: hidden;
-}
-
 h1 {
   margin-top: 0px;
 }
@@ -32,10 +28,11 @@ h1 {
 
 
 .header {
+  position: fixed;
   --title-width: 400px;
-  z-index: 100;
+  z-index: 101;
   flex: 0 1 auto;
-  position: relative;
+  background-color: white;
   top: 0px;
   left: 0px;
   width: 100vw;
@@ -46,10 +43,25 @@ h1 {
 .header-title {
   position: absolute;
   width: var(--title-width);
+  height: 60%;
   top: 50%;
   left: var(--horizontal-margin);
   transform: translateY(-50%);
   margin: 0px;
+}
+
+.header-title .logo-img {
+  display: inline-block;
+  height: 100%;
+  width: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.header-title .text-img {
+  display: inline-block;
+  height: 80%;
+  width: auto;
+  vertical-align: middle;
 }
 
 @media (max-width: 999px) {
@@ -59,7 +71,7 @@ h1 {
   }
 
   .header {
-    --title-width: 150px;
+    --title-width: 80%;
   }
 
   .header-title {
@@ -147,15 +159,19 @@ h1 {
 
 }
 
-
 .view-container {
-  position: absolute;
-  top: 75px;
-  height: calc(100% - 75px);
-  width: 100%;
-  overflow: auto;
+  padding-top: 75px;
+  min-height: calc(100vh - 75px - 60px);
 }
 
 .view {
   padding: 40px var(--horizontal-margin) 50px var(--horizontal-margin);
+}
+
+
+.footer {
+  background-color: rgb(240, 240, 240);
+  height: 60px;
+  box-sizing: border-box;
+  padding: 20px var(--horizontal-margin);
 }
