@@ -237,6 +237,8 @@ function PortfolioForm(props) {
       {submitted == false && <>
 
         <h1>Sign up to have your creative business listed</h1>
+        <p className='edit-notice'>If you wish to make amends to an existing portofolio, 
+          please contact info@creativebooknorthumberland.com</p>
 
         <h2>Basic info</h2>
         <Grid container spacing={2}>
