@@ -1,5 +1,6 @@
 import '../../css/PortfolioPreview.css'
 
+import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
@@ -33,22 +34,35 @@ function PortfolioPreview(props) {
 
     return (
         <div className='portfolio-preview'>
-        
-            <div className='name'>{props.portfolio.CompanyName}</div>
+            
+            <Grid container spacing={2} alignItems="center">
+                <Grid item xs={12} md={6}>
+                    <div>
+                        <div className='logo'><img className='appear' src={props.portfolio.LogoUrl} /></div>
+                        <div className='name'>
+                            <h1>{props.portfolio.CompanyName}</h1>
+                            <h2>{props.portfolio.Blurb}</h2>
+                        </div>
+                    </div>
+                </Grid>
 
-            <Box sx={{ mb: 2 }}>
-                <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
-                    <Chip label='Primary services' variant='outlined' color='primary' size='small' />
-                    {primaryServices.map((service) => (<Chip key={service} label={service} color='primary' size='small' />))}
-                </Stack>
-            </Box>
+                <Grid item xs={12} md={6}>
+                    <Box sx={{ mb: 2 }}>
+                        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
+                            <Chip label='Primary services' variant='outlined' color='primary' size='small' />
+                            {primaryServices.map((service) => (<Chip key={service} label={service} color='primary' size='small' />))}
+                        </Stack>
+                    </Box>
 
-            <Box>
-                <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
-                    <Chip label='Secondary services' variant='outlined' color='secondary' size='small' />
-                    {secondaryServices.map((service) => (<Chip key={service} label={service} color='secondary' size='small' />))}
-                </Stack>
-            </Box>
+                    <Box>
+                        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
+                            <Chip label='Secondary services' variant='outlined' color='secondary' size='small' />
+                            {secondaryServices.map((service) => (<Chip key={service} label={service} color='secondary' size='small' />))}
+                        </Stack>
+                    </Box>
+                </Grid>
+
+            </Grid>
 
         </div>
     )

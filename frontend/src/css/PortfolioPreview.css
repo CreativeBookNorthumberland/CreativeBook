@@ -1,5 +1,5 @@
 .portfolio-preview {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(var(--primary-color), 0.08);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -8,14 +8,66 @@
 }
 
 .portfolio-preview:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--primary-color), 0.15);
     transform: scale(1.01);
 }
 
+.portfolio-preview .logo {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: rgba(164, 164, 164, 0.2);
+    overflow: hidden;
+}
+.portfolio-preview .logo img{
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
 .portfolio-preview .name {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 40px);
     font-size: 26px;
     font-weight: 600;
-    margin-bottom: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.portfolio-preview .name h1 {
+    font-size: 26px;
+    margin: 0px;
+    font-weight: 600;
+}
+.portfolio-preview .name h2 {
+    font-size: 14px;
+    margin: 0px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+@media (max-width: 500px) {
+    .portfolio-preview .logo {
+        height: 30px;
+        width: 30px;
+    }
+    .portfolio-preview .name {
+        font-size: 24px;
+        padding-left: 10px;
+    }
+    .portfolio-preview .name h1 {
+        font-size: 18px;
+    }
+    .portfolio-preview .name h2 {
+        font-size: 12px;
+        margin-top: 5px;
+    }
 }
 
 

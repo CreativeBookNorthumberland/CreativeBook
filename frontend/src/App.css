@@ -4,6 +4,12 @@
 }
 
 
+:root {
+  --primary-color: 57, 122, 140;
+  --secondary-color: 122, 146, 94;
+}
+
+
 .appear {
   animation: 0.5s 1 forwards appear;
   animation-fill-mode: backwards;

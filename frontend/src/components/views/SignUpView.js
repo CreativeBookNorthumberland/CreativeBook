@@ -45,6 +45,12 @@ function PortfolioForm(props) {
       validation: notEmpty,
       errorMessage: 'Cannot be empty'
     },
+    Blurb: {
+      label: 'Blurb (max 15 words)',
+      initialValue: '',
+      validation: (value) => {return value!='' && value.split(' ').length <= 15},
+      errorMessage: 'Cannot be empty and must be less than 15 words'
+    },
     Website: {
       label: 'Website',
       initialValue: ''
@@ -107,7 +113,7 @@ function PortfolioForm(props) {
     return true
   }
 
-  function generateTextInput(formElementKey, useMultiline=false) {
+  function generateTextInput(formElementKey, useMultiline=false, rows=4) {
     var formElement = portfolioForm[formElementKey]
     if (!formElement) {
       return
@@ -128,7 +134,7 @@ function PortfolioForm(props) {
               label={formElement.label} 
               onChange={(e) => {updateValue(e)}}
               multiline={useMultiline}
-              rows={4}
+              rows={rows}
               helperText={formElement.isValid==false ? formElement.errorMessage : ''} />
   }
 
@@ -189,6 +195,7 @@ function PortfolioForm(props) {
       setPortfolioForm(portfolioFormCopy)
       
       if (formValid == false) {
+        setSubmitLoading(false)
         return
       }
 
@@ -256,6 +263,9 @@ function PortfolioForm(props) {
           <Grid item xs={12} sm={6}>
             {generateTextInput('Town')}
           </Grid>
+          <Grid item xs={12} sm={12}>
+            {generateTextInput('Blurb', true, 2)}
+          </Grid>
         </Grid>
 
         <h2>Social links</h2>
@@ -308,11 +318,11 @@ function PortfolioForm(props) {
         <h2>Business info</h2>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <h3>Tell us about yourself and your business (no more than 1500 characters)</h3>
+            <h3>Tell us about yourself and your business (max 1500 characters)</h3>
             {generateTextInput('BusinessDescriptionQuestion', true)}
           </Grid>
           <Grid item xs={12}>
-            <h3>Please let us know who you've previously worked with or what types of businesses you've worked with (no more than 1500 characters)</h3>
+            <h3>Please let us know who you've previously worked with or what types of businesses you've worked with (max 1500 characters)</h3>
             {generateTextInput('PreviousWorkQuestion', true)}
           </Grid>
         </Grid>
