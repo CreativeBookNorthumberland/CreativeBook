@@ -9,6 +9,10 @@
   --secondary-color: 122, 146, 94;
 }
 
+body {
+  background-color: rgb(240, 240, 240);
+}
+
 
 .appear {
   animation: 0.5s 1 forwards appear;
@@ -18,10 +22,6 @@
 
 .icon-text span{
   vertical-align: super;
-}
-
-h1 {
-  margin-top: 0px;
 }
 
 
@@ -116,12 +116,12 @@ h1 {
   .section {
     margin-bottom: 5px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(var(--secondary-color), 0.2);
     padding: 10px;
     cursor: pointer;
   }
   .section:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(var(--secondary-color), 0.5);
   }
 
 }
@@ -156,10 +156,10 @@ h1 {
     color: black;
   }
   .header-sections .section:hover {
-    background-color: #0000001b;
+    background-color: rgba(var(--secondary-color), 0.3);
   }
   .header-sections .section.selected {
-    background-color: black;
+    background-color: rgba(var(--secondary-color), 1);
     color: white;
   }
 
@@ -167,7 +167,7 @@ h1 {
 
 .view-container {
   padding-top: 75px;
-  min-height: calc(100vh - 75px - 60px);
+  background-color: white;
 }
 
 .view {
@@ -176,8 +176,6 @@ h1 {
 
 
 .footer {
-  background-color: rgb(240, 240, 240);
-  height: 60px;
   box-sizing: border-box;
-  padding: 20px var(--horizontal-margin);
+  padding: 25px var(--horizontal-margin);
 }

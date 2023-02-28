@@ -74,8 +74,8 @@ function PortfolioForm(props) {
     Services: {
       label: 'Services',
       initialValue: {},
-      validation: notEmpty,
-      errorMessage: 'Cannot be empy'
+      validation: validateServices,
+      errorMessage: 'Must have at least one primary service and cannot have more than 5 of each'
     },
     BusinessDescriptionQuestion: {
       label: 'Business description',
@@ -111,6 +111,28 @@ function PortfolioForm(props) {
       return false
     }
     return true
+  }
+
+  function validateServices(services) {
+    var primaryCount = 0
+    var secondayCount = 0
+    for (const key in services){
+      if (services[key] == 'Primary') {
+        primaryCount += 1
+      } else {
+        secondayCount += 1
+      }
+    }
+
+    if (primaryCount == 0) {
+      return false
+    }
+
+    if (primaryCount > 5 || secondayCount > 5) {
+      return false
+    } else {
+      return true
+    }
   }
 
   function generateTextInput(formElementKey, useMultiline=false, rows=4) {
@@ -290,6 +312,7 @@ function PortfolioForm(props) {
         </Grid>
 
         <h2>Services</h2>
+        {portfolioForm['Services'].isValid==false && <div className='error-msg'>{portfolioForm['Services'].errorMessage}</div>}
         <Grid container spacing={2} sx={{marginLeft: '0px'}}>
 
           <Grid container>

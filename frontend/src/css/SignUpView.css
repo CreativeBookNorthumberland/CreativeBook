@@ -22,6 +22,11 @@
     margin-bottom: 12px;
 }
 
+.portfolio-form .error-msg {
+    color: red;
+    margin-bottom: 30px;
+}
+
 .portfolio-form .logo-upload .upload-button {
     position: relative;
 }
