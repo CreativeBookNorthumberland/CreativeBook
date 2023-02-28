@@ -1,3 +1,26 @@
 p {
     font-size: 20px;
 }
+
+.shortcuts {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.service-shortcut {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.service-shortcut:hover {
+    transform: scale(1.02);
+}
+
+.service-shortcut img {
+    width: 100%;
+}

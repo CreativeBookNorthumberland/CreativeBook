@@ -3,12 +3,34 @@ import '../../css/HomeView.css'
 import { useLocation, useNavigate, NavLink, Routes, Route, Navigate } from "react-router-dom"
 import { Button } from '@mui/material'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+import Copywriting from '../../assets/icons/Copywriting.jpg'
+import Dance from '../../assets/icons/Dance.jpg'
+import GraphicDesign from '../../assets/icons/GraphicDesign.jpg'
+import Illustration from '../../assets/icons/Illustration.jpg'
+import Music from '../../assets/icons/Music.jpg'
+import Other from '../../assets/icons/Other.jpg'
+import Photography from '../../assets/icons/Photography.jpg'
+import SocialMedia from '../../assets/icons/SocialMedia.jpg'
+import WebsiteDesign from '../../assets/icons/WebsiteDesign.jpg'
+
 
 function HomeView() {
 
   return (
     <>
+      <div class='shortcuts'>
+        <div class='service-shortcut'><img src={GraphicDesign} /></div>
+        <div class='service-shortcut'><img src={SocialMedia} /></div>
+        <div class='service-shortcut'><img src={WebsiteDesign} /></div>
+        <div class='service-shortcut'><img src={Copywriting} /></div>
+        <div class='service-shortcut'><img src={Dance} /></div>
+        <div class='service-shortcut'><img src={Illustration} /></div>
+        <div class='service-shortcut'><img src={Music} /></div>
+        <div class='service-shortcut'><img src={Photography} /></div>
+        <div class='service-shortcut'><img src={Other} /></div>
+      </div>
+
       <p>Welcome to Creative Book Northumberland. The home of creative talent in Northumberland.</p>
 
       <p>Creative Book Northumberland aims to connect freelance creatives across Northumberland, 
