@@ -47,18 +47,38 @@
     vertical-align: middle;
     margin-right: 20px;
     background-color: rgba(235, 235, 235);
-    border-radius: 50%;
     border: 1px solid rgba(235, 235, 235);
+    border-radius: 50%;
+}
+
+.portfolio-form .logo-preview-container-inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
     overflow: hidden;
 }
 
-.portfolio-form .logo-preview-container img {
+.portfolio-form .logo-preview-container-inner img {
     position: absolute;
     width: 100%;
     height: auto;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.portfolio-form .logo-preview-container .logo-remove {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    opacity: 0.7;
+    right: -5px;
+    top: -5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .portfolio-form .document-upload {

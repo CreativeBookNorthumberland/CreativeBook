@@ -21,6 +21,16 @@ import CBN_text from './assets/CBN_text.jpg'
 
 function App() {
 
+  const [snackData, setSnackData] = useState({show: false, text: ''})
+  const [section, setSection] = useState('')
+  const [showSections, setShowSections] = useState(false)
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+  const [passwordModalCallback, setPasswordModalCallback] = useState({'callback': () => {}})
+  const [searchFilters, setSearchFilters] = useState({})
+  let location = useLocation()
+  let navigate = useNavigate()
+
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -66,27 +76,22 @@ function App() {
       id: 3,
       name: 'Find creative',
       path: '/search',
-      viewComponent: <SearchView showSnack={showSnack} />
+      viewComponent: <SearchView showSnack={showSnack} filters={searchFilters} />
     },
     Home: {
       id: 4,
       name: 'Home',
       path: '/home',
-      viewComponent: <HomeView showSnack={showSnack} />
+      viewComponent: <HomeView showSnack={showSnack} goToSearchWithFilter={goToSearchWithFilter} />
     }
   }
 
 
-  const [snackData, setSnackData] = useState({show: false, text: ''})
-  const [section, setSection] = useState('')
-  const [showSections, setShowSections] = useState(false)
-  const [showPasswordModal, setShowPasswordModal] = useState(false)
-  const [passwordModalCallback, setPasswordModalCallback] = useState({'callback': () => {}})
-  let location = useLocation()
-  let navigate = useNavigate()
-
-
   useEffect(() => {
+    if (location.pathname == Sections.Home.path) {
+      setSearchFilters({})
+    }
+
     var no_path_match = true
 
     for(var key of Object.keys(Sections)) {
@@ -110,6 +115,11 @@ function App() {
     setShowPasswordModal(true)
     setPasswordModalCallback({'callback': callback})
   }
+
+  function goToSearchWithFilter(filters) {
+    setSearchFilters(filters)
+    navigate(Sections.ForBusinesses.path)
+  }
   
 
   return (
@@ -129,10 +139,12 @@ function App() {
         {/* header */}
         <div className='header'>
 
-          <div className='header-title'>
-            <img className='logo-img' src={CBN_logo} />
-            <img className='text-img' src={CBN_text} />
-          </div>
+          <NavLink to='/'>
+            <div className='header-title'>
+              <img className='logo-img' src={CBN_logo} />
+              <img className='text-img' src={CBN_text} />
+            </div>
+          </NavLink>
           
           {/* Button to open the sections overlay */}
           <div className='open-sections-button'>

@@ -6,6 +6,7 @@ import Radio from '@mui/material/Radio'
 import Button from '@mui/material/Button'
 import Upload from '@mui/icons-material/Upload'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
+import Clear from '@mui/icons-material/Clear'
 
 import Loader from '../misc/Loader'
 
@@ -95,9 +96,8 @@ function PortfolioForm(props) {
   const [portfolioForm, setPortfolioForm] = useState(formSchema.generateInitialForm())
   const [logoFile, setLogoFile] = useState(null)
   const [services, setServices] = useState([
-    'Graphic Design', 'Photography', 'Illustration', 
-    'Copywriting', 'Social media', 'Music', 'Website design', 
-    'Website building', 'Legal advice', 'Financial advice'
+    'Graphic design', 'Social media', 'Website design',
+    'Copywriting', 'Dance', 'Illustration', 'Music', 'Photography'
   ])
   const [newService, setNewService] = useState('')
   const [workSampleFiles, setWorkSampleFiles] = useState([])
@@ -267,7 +267,10 @@ function PortfolioForm(props) {
           <Grid item xs={12}>
             <div className='logo-upload'>
               <div className='logo-preview-container'>
-                <img className='logo-preview' src={logoFile==null ? '' : URL.createObjectURL(logoFile)} />
+                <div className='logo-preview-container-inner'>
+                  <img className='logo-preview' src={logoFile==null ? '' : URL.createObjectURL(logoFile)} />
+                </div>
+                {logoFile!=null && <div className='logo-remove' onClick={() => {setLogoFile(null)}}><Clear /></div>}
               </div>
               <Button className='upload-button' variant='contained'>
                 <input type="file" accept='.png' onChange={(e) => {updateLogo(e)}}/>

@@ -15,21 +15,16 @@ import SocialMedia from '../../assets/icons/SocialMedia.jpg'
 import WebsiteDesign from '../../assets/icons/WebsiteDesign.jpg'
 
 
-function HomeView() {
+function HomeView(props) {
+
+  function serviceShortcut(service) {
+    props.goToSearchWithFilter({
+      'services': [service]
+    })
+  }
 
   return (
     <>
-      <div class='shortcuts'>
-        <div class='service-shortcut'><img src={GraphicDesign} /></div>
-        <div class='service-shortcut'><img src={SocialMedia} /></div>
-        <div class='service-shortcut'><img src={WebsiteDesign} /></div>
-        <div class='service-shortcut'><img src={Copywriting} /></div>
-        <div class='service-shortcut'><img src={Dance} /></div>
-        <div class='service-shortcut'><img src={Illustration} /></div>
-        <div class='service-shortcut'><img src={Music} /></div>
-        <div class='service-shortcut'><img src={Photography} /></div>
-        <div class='service-shortcut'><img src={Other} /></div>
-      </div>
 
       <p>Welcome to Creative Book Northumberland. The home of creative talent in Northumberland.</p>
 
@@ -55,6 +50,18 @@ function HomeView() {
       <p>Thanks to funding from North of Tyne Culture and Investment Programme: Creative UK, Creative 
         Book Northumberland is able to offer free listings to freelance creatives across Northumberland 
         as well as offering free access to businesses who are looking to collaborate.</p>
+
+      <h3>Search shortcuts:</h3>
+      <div className='shortcuts'>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Graphic design")}}><img src={GraphicDesign} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Social media")}}><img src={SocialMedia} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Website design")}}><img src={WebsiteDesign} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Copywriting")}}><img src={Copywriting} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Dance")}}><img src={Dance} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Illustration")}}><img src={Illustration} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Music")}}><img src={Music} /></div>
+        <div className='service-shortcut' onClick={() => {serviceShortcut("Photography")}}><img src={Photography} /></div>
+      </div>
 
     </>
   )

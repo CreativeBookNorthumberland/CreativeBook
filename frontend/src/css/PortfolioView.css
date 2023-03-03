@@ -29,22 +29,26 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid rgba(235, 235, 235);
-    background-color: rgba(235, 235, 235);
+    border: 2px solid rgba(var(--secondary-color), 0.7);
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: rgba(235, 235, 235, 0.5);
 }
 .portfolio .portfolio-header .portfolio-logo img {
     position: absolute;
     top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
+    left: 50%;
+    width: calc(100%/2 * 1.6);
+    transform: translateY(-50%) translateX(-50%);
+    /* background-color: red; */
 }
 
 .portfolio .portfolio-header .portfolio-name {
     display: inline-block;
-    width: calc(100% - 80px);
+    width: calc(100% - 60px);
     padding-top: 10px;
     padding-left: 15px;
+    box-sizing: border-box;
     font-size: 34px;
     font-weight: 600;
     vertical-align: top;

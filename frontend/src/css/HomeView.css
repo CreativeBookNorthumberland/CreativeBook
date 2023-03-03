@@ -6,21 +6,34 @@ p {
     display: flex;
     gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .service-shortcut {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     padding: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    flex-grow: 1;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.1s;
+    text-align: center;
 }
 .service-shortcut:hover {
-    transform: scale(1.02);
+    transform: scale(1.1);
 }
 
 .service-shortcut img {
-    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 500px) {
+    .shortcuts {
+        gap: 10px;
+    }
+    .service-shortcut {
+        width: 80px;
+        height: 80px;
+    }
 }

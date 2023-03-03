@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react'
 
 import api from '../../services/api'
 
-function SearchView() {
+function SearchView(props) {
 
   const [loading, setLoading] = useState(true)
   const [portfolios, setPortfolios] = useState([])
@@ -24,6 +24,24 @@ function SearchView() {
     'name': '',
     'services': []
   })
+
+
+  useEffect(() => {
+    if (props.filters['services']) {
+      
+      for (var service in filters.services) {
+        if (services.includes(service) == false) {
+          var newServices = [...services]
+          newServices.push(service)
+          setServices(newServices)
+        }
+      }
+
+      var newFilters = {...filters}
+      newFilters['services'] = newFilters['services'].concat(props.filters['services'])
+      setFilters(newFilters)
+    }
+  }, [props.filters])
 
 
   useEffect(() => {
@@ -38,9 +56,9 @@ function SearchView() {
           portfolio.PrimaryServices = []
           portfolio.SecondaryServices = []
 
-          var services = Object.keys(portfolio.Services)
-          for (var service_index in services) {
-            var service = services[service_index]
+          var new_services = Object.keys(portfolio.Services)
+          for (var service_index in new_services) {
+            var service = new_services[service_index]
             servicesSet.add(service)
             if (portfolio.Services[service] == 'Primary') {
               portfolio.PrimaryServices.push(service)
@@ -48,7 +66,11 @@ function SearchView() {
               portfolio.SecondaryServices.push(service)
             }
           }
-
+          for (var service in props.filters['services']) {
+            console.log(service)
+            servicesSet.add(props.filters['services'][service])
+          }
+          
         }
 
         setPortfolios(portfolios)
@@ -61,6 +83,7 @@ function SearchView() {
   useEffect(() => {
     
     var newFilteredPortfolios = [...portfolios]
+    console.log(filters)
 
     // filter by name
     if (filters.name != '') {
@@ -78,7 +101,7 @@ function SearchView() {
 
     setFilteredPortfolios(newFilteredPortfolios)
 
-  }, [filters])
+  }, [filters, portfolios])
 
 
   return (
@@ -105,6 +128,7 @@ function SearchView() {
             width: (window.innerWidth<700 ? '100%' : 300) }}
           size='small'
           options={services}
+          value={filters.services}
           getOptionLabel={option => option}
           onChange={(event, newServices) => {
             setFilters({...filters, 'services': newServices})
