@@ -1,17 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.73c2c2e6.css",
-    "main.js": "/static/js/main.434f5265.js",
+    "main.css": "/static/css/main.8abef21c.css",
+    "main.js": "/static/js/main.88ef69c9.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/CBN_text.jpg": "/static/media/CBN_text.55458c1573b842513d75.jpg",
     "static/media/CBN_logo.jpg": "/static/media/CBN_logo.ebad27076af5c33b0c72.jpg",
+    "static/media/GraphicDesign.jpg": "/static/media/GraphicDesign.a327fd84ed7cc1a9b35e.jpg",
+    "static/media/WebsiteDesign.jpg": "/static/media/WebsiteDesign.9a175c98b31f1243a6d5.jpg",
+    "static/media/Photography.jpg": "/static/media/Photography.350c83afbfcb43fd9904.jpg",
+    "static/media/Illustration.jpg": "/static/media/Illustration.89380da21aac31470ede.jpg",
+    "static/media/SocialMedia.jpg": "/static/media/SocialMedia.99364624834642839280.jpg",
+    "static/media/Dance.jpg": "/static/media/Dance.c215f6889c514c45a3f1.jpg",
+    "static/media/Copywriting.jpg": "/static/media/Copywriting.370003f1a483ad3c7342.jpg",
+    "static/media/Music.jpg": "/static/media/Music.69f756eb05ff38b6daf9.jpg",
+    "static/media/Other.jpg": "/static/media/Other.ce431045d9a111cbb446.jpg",
     "index.html": "/index.html",
-    "main.73c2c2e6.css.map": "/static/css/main.73c2c2e6.css.map",
-    "main.434f5265.js.map": "/static/js/main.434f5265.js.map",
+    "main.8abef21c.css.map": "/static/css/main.8abef21c.css.map",
+    "main.88ef69c9.js.map": "/static/js/main.88ef69c9.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.73c2c2e6.css",
-    "static/js/main.434f5265.js"
+    "static/css/main.8abef21c.css",
+    "static/js/main.88ef69c9.js"
   ]
 }
