@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.8abef21c.css",
-    "main.js": "/static/js/main.88ef69c9.js",
+    "main.css": "/static/css/main.74b395a7.css",
+    "main.js": "/static/js/main.dadb8661.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/CBN_text.jpg": "/static/media/CBN_text.55458c1573b842513d75.jpg",
     "static/media/CBN_logo.jpg": "/static/media/CBN_logo.ebad27076af5c33b0c72.jpg",
@@ -15,12 +15,12 @@
     "static/media/Music.jpg": "/static/media/Music.69f756eb05ff38b6daf9.jpg",
     "static/media/Other.jpg": "/static/media/Other.ce431045d9a111cbb446.jpg",
     "index.html": "/index.html",
-    "main.8abef21c.css.map": "/static/css/main.8abef21c.css.map",
-    "main.88ef69c9.js.map": "/static/js/main.88ef69c9.js.map",
+    "main.74b395a7.css.map": "/static/css/main.74b395a7.css.map",
+    "main.dadb8661.js.map": "/static/js/main.dadb8661.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8abef21c.css",
-    "static/js/main.88ef69c9.js"
+    "static/css/main.74b395a7.css",
+    "static/js/main.dadb8661.js"
   ]
 }
