@@ -222,7 +222,7 @@ function PortfolioForm(props) {
       }
 
       const portfolioFormData = new FormData()
-      portfolioFormData.append('logo.png', logoFile)
+      portfolioFormData.append('logo', logoFile)
       for (var file_index in workSampleFiles) {
         portfolioFormData.append(workSampleFiles[file_index].name, workSampleFiles[file_index])
       }
@@ -233,8 +233,13 @@ function PortfolioForm(props) {
         .then(() => {
           setSubmitted(true)
         })
-        .catch(() => {
-          props.showSnack('There was an issue while uploading your portfolio')
+        .catch((e) => {
+          try {
+            props.showSnack(e.response.data)
+          }
+          catch {
+            props.showSnack('There was an issue while uploading your portfolio')
+          }
         })
         .finally(() => {
           setSubmitLoading(false)
@@ -273,7 +278,7 @@ function PortfolioForm(props) {
                 {logoFile!=null && <div className='logo-remove' onClick={() => {setLogoFile(null)}}><Clear /></div>}
               </div>
               <Button className='upload-button' variant='contained'>
-                <input type="file" accept='.png' onChange={(e) => {updateLogo(e)}}/>
+                <input type="file" accept='.png,.jpg,.jpeg' onChange={(e) => {updateLogo(e)}}/>
                 <Upload /> <span>Upload logo</span>
               </Button>
             </div>
