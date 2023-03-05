@@ -176,6 +176,7 @@ function App() {
         
         {/* body of app where views will be displayed */}
         <div className='view-container'>
+          <div className='background'></div>
           <Routes>
             
             {/* Sepcify route for each section */}
