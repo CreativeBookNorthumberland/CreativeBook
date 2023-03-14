@@ -12,10 +12,9 @@
 
 .loader .dot {
     display: inline-block;
-    height: 0.4em;
-    width: 0.4em;
+    height: 0.5em;
+    width: 0.5em;
     border-radius: 50%;
-    background-color: black;
     animation-name: bounce;
     animation-duration: var(--animation-duration);
     animation-iteration-count: infinite;

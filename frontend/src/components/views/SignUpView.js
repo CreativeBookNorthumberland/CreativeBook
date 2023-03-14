@@ -330,7 +330,7 @@ function PortfolioForm(props) {
           </Grid>
 
           {services.map((service, index) => (
-            <Grid key={service} container sx={{backgroundColor: index%2==0 ? 'rgb(240, 240, 240)' : 'transparent'}}>
+            <Grid key={service} container sx={{backgroundColor: index%2==0 ? 'rgba(var(--secondary-color), 0.2)' : 'transparent'}}>
               <Grid item xs={4} sx={{paddingTop: '10px', paddingLeft: '10px'}}>{service}</Grid>
               <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Primary} onClick={() => {updateService(service, ServiceLevels.Primary)}} /></Grid>
               <Grid item xs={4}><Radio checked={portfolioForm.Services.value[service] == ServiceLevels.Secondary} onClick={() => {updateService(service, ServiceLevels.Secondary)}}/></Grid>

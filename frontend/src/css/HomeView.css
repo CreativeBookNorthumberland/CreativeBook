@@ -50,6 +50,7 @@
     animation-duration: 1.5s;
     animation-iteration-count: 1;
     animation-delay: 0.1s;
+    animation-fill-mode: backwards;
 }
 
 .home-section-1 .big-text {

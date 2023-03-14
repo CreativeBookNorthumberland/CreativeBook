@@ -110,7 +110,7 @@ function PortfolioView(props) {
 
             { portfolio != null && <div className='appear'>
 
-                <Grid container spacing={2}>
+                <Grid container spacing={0}>
                     <Grid item xs={12} sm={6}>
                         {(props.isAdmin || portfolio.PhoneNumber!='') && <div className='icon-info icon-text'>
                             <PhoneIcon /> <span>{portfolio.PhoneNumber}</span> 
@@ -128,28 +128,28 @@ function PortfolioView(props) {
                         </div>}
 
                         {(props.isAdmin || portfolio.Website!='') && <div className='icon-info icon-text'>
-                            <Link /> <span>{portfolio.Website}</span>
+                            <Link /> <span><u><a href={portfolio.Website}>{portfolio.Website}</a></u></span>
                             {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Website')}}>Edit</Button>}
                         </div>}
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         {(props.isAdmin || portfolio.Facebook!='') && <div className='icon-info icon-text'>
-                            <Facebook /> <span>{portfolio.Facebook}</span>
+                            <Facebook /> <span><u><a href={portfolio.Facebook}>{portfolio.Facebook}</a></u></span>
                             {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Facebook')}}>Edit</Button>}
                         </div>}
                         
                         {(props.isAdmin || portfolio.Instagram!='') && <div className='icon-info icon-text'>
-                            <Instagram /> <span>{portfolio.Instagram}</span>
+                            <Instagram /> <span><u><a href={portfolio.Instagram}>{portfolio.Instagram}</a></u></span>
                             {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Instagram')}}>Edit</Button>}
                         </div>}
                         
                         {(props.isAdmin || portfolio.Twitter!='') && <div className='icon-info icon-text'>
-                            <Twitter /> <span>{portfolio.Twitter}</span>
+                            <Twitter /> <span><u><a href={portfolio.Twitter}>{portfolio.Twitter}</a></u></span>
                             {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Twitter')}}>Edit</Button>}
                         </div>}
                         
                         {(props.isAdmin || portfolio.Linkedin!='') && <div className='icon-info icon-text'>
-                            <Linkedin /> <span>{portfolio.Linkedin}</span>
+                            <Linkedin /> <span><u><a href={portfolio.Linkedin}>{portfolio.Linkedin}</a></u></span>
                             {props.isAdmin && <Button size='small' sx={{ml: 2}} onClick={() => {showEditModal('Linkedin')}}>Edit</Button>}
                         </div>}
                     </Grid>

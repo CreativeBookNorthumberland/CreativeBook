@@ -4,9 +4,9 @@ function Loader(props) {
 
   return (
     <div className='loader'>
-        <div className='dot' style={{'backgroundColor': props.color ?? 'black'}} />
-        <div className='dot' style={{'backgroundColor': props.color ?? 'black'}} />
-        <div className='dot' style={{'backgroundColor': props.color ?? 'black'}} />
+        <div className='dot' style={{'backgroundColor': props.color ?? 'rgb(var(--secondary-color))'}} />
+        <div className='dot' style={{'backgroundColor': props.color ?? 'rgb(var(--secondary-color))'}} />
+        <div className='dot' style={{'backgroundColor': props.color ?? 'rgb(var(--secondary-color))'}} />
     </div>
   )
 

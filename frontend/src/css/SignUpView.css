@@ -46,8 +46,8 @@
     width: 75px;
     vertical-align: middle;
     margin-right: 20px;
-    background-color: rgba(235, 235, 235);
-    border: 1px solid rgba(235, 235, 235);
+    background-color: rgba(235, 235, 235, 0.5);
+    border: 3px solid rgba(var(--secondary-color));
     border-radius: 50%;
 }
 
@@ -84,14 +84,14 @@
 .portfolio-form .document-upload {
     position: relative;
     height: 100px;
-    background-color: rgba(235, 235, 235);
+    background-color: rgba(var(--secondary-color), 0.3);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s;
 }
 .portfolio-form .document-upload:hover,
 .portfolio-form .document-upload.drag-active {
-    background-color: rgba(240, 240, 240);
+    background-color: rgba(var(--secondary-color), 0.4);
     transform: scale(1.015);
 }
 
@@ -116,7 +116,7 @@
 }
 
 .portfolio-form .files-preview {
-    background-color: rgba(240, 240, 240);
+    background-color: rgba(var(--secondary-color), 0.3);
     border-radius: 10px;
     margin-top: 20px;
     padding: 10px 20px 0px 20px;
@@ -128,7 +128,7 @@
     margin-bottom: 10px;
     padding: 2px 5px;
     border-radius: 5px;
-    background-color: rgba(225, 225, 225);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 .portfolio-form .files-preview .file-container:last-of-type {
     margin-right: 0px;
