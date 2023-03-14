@@ -16,8 +16,8 @@ import AdminView from './components/views/AdminView'
 import PasswordModal from './components/misc/PasswordModal'
 
 import { useEffect, useState } from 'react'
-import CBN_logo from './assets/CBN_logo.jpg'
-import CBN_text from './assets/CBN_text.jpg'
+import CBN_logo from './assets/CBN_logo.png'
+import CBN_text from './assets/CBN_text.png'
 
 function App() {
 
@@ -201,6 +201,8 @@ function App() {
         
         <div className='footer'>
           Illustrations beautifully created by Daniel J Weatheritt <u><a href='http://www.danielweatheritt.com'>www.danielweatheritt.com</a></u>.
+          <br /><br />
+          Website built by Oliver Redeyoff <u><a href='https://www.oliverredeyoff.com/'>www.oliverredeyoff.com</a></u>.
           <br /><br />
           The information on this website is for general informational purposes
           only. Creative Book Northumberland makes no representation or warranty

@@ -37,10 +37,9 @@
 .portfolio .portfolio-header .portfolio-logo img {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: calc(100%/2 * 1.6);
-    transform: translateY(-50%) translateX(-50%);
-    /* background-color: red; */
+    left: 0px;
+    width: 100%;
+    transform: translateY(-50%);
 }
 
 .portfolio .portfolio-header .portfolio-name {

@@ -1,5 +1,5 @@
 .portfolio-preview {
-    background-color: rgba(var(--primary-color), 0.15);
+    background-color: rgba(var(--primary-color), 0.2);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -8,7 +8,7 @@
 }
 
 .portfolio-preview:hover {
-    background-color: rgba(var(--primary-color), 0.2);
+    background-color: rgba(var(--primary-color), 0.4);
     transform: scale(1.006);
 }
 
@@ -19,6 +19,9 @@
     height: 40px;
     width: 40px;
     overflow: hidden;
+    border: 2px solid rgba(var(--secondary-color), 0.7);
+    box-sizing: border-box;
+    border-radius: 50%;
 }
 .portfolio-preview .logo img{
     position: absolute;

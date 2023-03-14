@@ -1,5 +1,209 @@
-p {
-    font-size: 20px;
+@font-face {
+    font-family: PTMono;
+    src: url(PTMono-Regular.ttf);
+}
+
+@keyframes appear {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+.arrow-link {
+    display: inline-block;
+    position: relative;
+    color: rgb(130, 130, 130);
+    color: rgb(var(--secondary-color));
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: normal;
+}
+.arrow-link:hover {
+    filter: brightness(75%);
+}
+.arrow-link .arrow-link-text {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: PTMono;
+    font-size: 16px;
+    font-weight: 600;
+}
+.arrow-link .arrow-link-arrow {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 6px;
+    margin-left: 10px;
+    transition: all 0.2s;
+}
+.arrow-link:hover .arrow-link-arrow {
+    display: inline-block;
+    margin-left: 13px;
+}
+
+.home-section-1 {
+    display: flex;
+    align-items: center;
+    padding: 20px 5%;
+    animation-name: appear;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-delay: 0.1s;
+}
+
+.home-section-1 .big-text {
+    order: 1;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 70%;
+    font-size: 50px;
+    font-weight: 600;
+    font-family: PTMono;
+    color: rgb(40, 40, 40);
+    line-height: 120%;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.home-section-1 .big-text .t1 {
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.home-section-1 .big-text .t2 {
+    background-color: rgb(var(--primary-color));
+    color: white;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.home-section-1 .big-text .t3 {
+    background-color: rgb(var(--secondary-color));
+    color: white;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.home-section-1 .big-img {
+    order: 2;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 30%;
+    z-index: 2;
+}
+
+.home-section-1 .big-img img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+@media (max-width: 800px) {
+
+    .home-section-1 {
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+
+    .home-section-1 .big-text {
+        order: 2;
+        font-size: 7vw;
+        line-height: 140%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-section-1 .big-img {
+        order: 1;
+        width: 100%;
+    }
+
+    .home-section-1 .big-img img {
+        width: 40%;
+        min-width: 150px;
+    }
+
+}
+
+.home-section-2 .home-box {
+    font-size: 18px;
+    /* border-right: 3px solid rgb(var(--primary-color)); */
+    /* border-top: 3px solid rgb(var(--primary-color)); */
+    /* border-left: 3px solid rgb(var(--primary-color)); */
+    /* border-bottom: 3px solid rgb(var(--primary-color)); */
+    font-weight: 450;
+    background-color: rgba(var(--primary-color), 0.15);
+    padding: 20px;
+    box-shadow: -4px 4px 0px rgba(var(--primary-color), 0.5);
+}
+
+.home-section-2 .b1 {
+    margin-bottom: 20px;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.home-section-2 .b2 {
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: calc(50% - 10px);
+    margin-right: 20px;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 0.75s;
+    animation-fill-mode: backwards;
+}
+
+.home-section-2 .b3 {
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: calc(50% - 10px);
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+.home-section-2 .b4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 1.25s;
+    animation-fill-mode: backwards;
+}
+
+@media (max-width: 600px) {
+
+    .home-section-2 .b2 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .home-section-2 .b3 {
+        width: 100%;
+    }
+
+}
+
+.home-section-3 {
+    animation-name: appear;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
 }
 
 .shortcuts {
