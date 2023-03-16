@@ -36,9 +36,7 @@ function PortfolioForm(props) {
     },
     PhoneNumber: {
       label: 'Phone Number',
-      initialValue: '',
-      validation: notEmpty,
-      errorMessage: 'Cannot be empty'
+      initialValue: ''
     },
     Town: {
       label: 'Town',
