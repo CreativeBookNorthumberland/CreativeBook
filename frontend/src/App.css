@@ -183,7 +183,7 @@ body {
   z-index: 1;
   opacity: 0.08;
   background-image: url(./assets/bg.jpg);
-  background-position: center;
+  background-position-x: center;
 }
 
 .view {

@@ -183,19 +183,17 @@ function PortfolioForm(props) {
     }
 
     if (!isValidFileSize(file)) {
-      props.showSnack('File cannot be more than 3Mb')
+      props.showSnack('File cannot be more than 3MB')
       return
     }
 
     setDragActive(false)
-    console.log(workSampleFiles)
     setWorkSampleFiles([...workSampleFiles, e.target.files[0]])
   }
 
   function updateService(service, level) {
     var portfolioFormCopy = {...portfolioForm}
     portfolioFormCopy.Services.value[service] = level
-    console.log(portfolioFormCopy)
     setPortfolioForm(portfolioFormCopy)
   }
 
@@ -208,7 +206,7 @@ function PortfolioForm(props) {
   }
 
   function submit() {
-    setSubmitLoading(true)
+    setSubmitLoading(true) 
 
     try {
       var [formValid, portfolioFormCopy] = formSchema.validate(portfolioForm)
@@ -226,7 +224,7 @@ function PortfolioForm(props) {
       }
       var portfolioString = JSON.stringify(formSchema.generateValuesDict(portfolioFormCopy))
       portfolioFormData.append('portfolio', portfolioString)
-      
+
       api.postPortfolio(portfolioFormData)
         .then(() => {
           setSubmitted(true)
@@ -366,7 +364,7 @@ function PortfolioForm(props) {
               onDragExit={() => {setDragActive(false)}}
               onDragEnd={() => {setDragActive(false)}}>
               <input type="file" onChange={(e) => {addWorkSample(e)}}/>
-              <div className='form-upload icon-text'><Upload /> <span>Upload any work samples</span></div>
+              <div className='form-upload icon-text'><Upload /> <span>Upload a work sample (3MB maximum)</span></div>
             </div>
             { workSampleFiles.length > 0 && <div className='files-preview'>
               {workSampleFiles.map((file) => (

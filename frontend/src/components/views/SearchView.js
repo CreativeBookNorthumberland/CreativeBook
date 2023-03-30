@@ -67,7 +67,6 @@ function SearchView(props) {
             }
           }
           for (var service in props.filters['services']) {
-            console.log(service)
             servicesSet.add(props.filters['services'][service])
           }
           
@@ -83,7 +82,6 @@ function SearchView(props) {
   useEffect(() => {
     
     var newFilteredPortfolios = [...portfolios]
-    console.log(filters)
 
     // filter by name
     if (filters.name != '') {
